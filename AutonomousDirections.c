@@ -8,8 +8,50 @@
 
 void forward(int pwr,int rotations){
 	nMotorEncoder[rightfront] = 0;
-	while(nMotorEncoder[rightfront] <= rotations)
-		{
+	bMotorReflected[rightfront] = false;
+	bMotorReflected[leftfront] = false;
+	bMotorReflected[rightrear] = false;
+	bMotorReflected[leftrear] = false;
+	while(nMotorEncoder[rightfront] <= rotations){
+		motor[rightfront] = pwr;
+		motor[leftfront] = pwr;
+		motor[rightrear] = pwr;
+		motor[leftrear] = pwr;
+	}
+}
+void backward(int pwr,int rotations){
+	nMotorEncoder[rightfront] = 0;
+	bMotorReflected[rightfront] = true;
+	bMotorReflected[leftfront] = true;
+	bMotorReflected[rightrear] = true;
+	bMotorReflected[leftrear] = true;
+	while(nMotorEncoder[rightfront] <= rotations){
+		motor[rightfront] = pwr;
+		motor[leftfront] = pwr;
+		motor[rightrear] = pwr;
+		motor[leftrear] = pwr;
+	}
+}
+void turnright(int pwr,int rotations){
+	nMotorEncoder[rightfront] = 0;
+	bMotorReflected[rightfront] = false;
+	bMotorReflected[leftfront] = true;
+	bMotorReflected[rightrear] = true;
+	bMotorReflected[leftrear] = false;
+	while(nMotorEncoder[rightfront] <= rotations){
+		motor[rightfront] = pwr;
+		motor[leftfront] = pwr;
+		motor[rightrear] = pwr;
+		motor[leftrear] = pwr;
+	}
+}
+void turnleft(int pwr,int rotations){
+	nMotorEncoder[leftfront] = 0;
+	bMotorReflected[rightfront] = true;
+	bMotorReflected[leftfront] = false;
+	bMotorReflected[rightrear] = false;
+	bMotorReflected[leftrear] = true;
+	while(nMotorEncoder[leftfront] <= rotations){
 		motor[rightfront] = pwr;
 		motor[leftfront] = pwr;
 		motor[rightrear] = pwr;
