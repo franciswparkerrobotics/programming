@@ -58,9 +58,3 @@ void turnleft(int pwr,int rotations){
 		motor[leftrear] = pwr;
 	}
 }
-task main(){
-int pwr = 20;
-int rotations = 1200;
-//1 rotation = 1200
-forward(pwr,rotations);
-}
