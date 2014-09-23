@@ -12,11 +12,12 @@ task main()
 {
 //power,rotations
 //1200 is around 1 rotation
+//1200 rotations turn is 270 degrees
 forward(50,1200);
 wait1Msec(2000);
-turnright(50,1000);
+turnright(50,1200);
 wait1Msec(2000);
-turnleft(50,1000);
+turnleft(50,1200);
 wait1Msec(2000);
 backward(50,3600);
 }
