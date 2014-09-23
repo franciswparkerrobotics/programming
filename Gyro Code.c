@@ -39,8 +39,8 @@ task superDrive(){
 	float movementAmount, turningAmount, totalAmount; // for apportioning power to turning and moving
 	while(true){
 		// Get joystick values
-		x1 = joystick.joy1_x1 * .5;y1 = joystick.joy1_y1 * .5;
-		x2 = joystick.joy1_x2 * .5;y2 = joystick.joy1_y2 * .5;
+		x1 = joystick.joy1_x1 * .75;y1 = joystick.joy1_y1 * .75;
+		x2 = joystick.joy1_x2 * .75;y2 = joystick.joy1_y2 * .75;
 		// function for making new initial heading
 		if (joy1Btn(5)==1){
 			initialHeading = radheading;
