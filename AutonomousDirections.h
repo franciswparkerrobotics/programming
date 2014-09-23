@@ -9,9 +9,9 @@
 void forward(int pwr,int rotations){
 	nMotorEncoder[rightfront] = 0;
 	bMotorReflected[rightfront] = false;
-	bMotorReflected[leftfront] = false;
+	bMotorReflected[leftfront] = true;
 	bMotorReflected[rightrear] = false;
-	bMotorReflected[leftrear] = false;
+	bMotorReflected[leftrear] = true;
 	while(nMotorEncoder[rightfront] <= rotations){
 		motor[rightfront] = pwr;
 		motor[leftfront] = pwr;
@@ -22,9 +22,9 @@ void forward(int pwr,int rotations){
 void backward(int pwr,int rotations){
 	nMotorEncoder[rightfront] = 0;
 	bMotorReflected[rightfront] = true;
-	bMotorReflected[leftfront] = true;
+	bMotorReflected[leftfront] = false;
 	bMotorReflected[rightrear] = true;
-	bMotorReflected[leftrear] = true;
+	bMotorReflected[leftrear] = false;
 	while(nMotorEncoder[rightfront] <= rotations){
 		motor[rightfront] = pwr;
 		motor[leftfront] = pwr;
