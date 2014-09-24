@@ -12,11 +12,11 @@ float initial; float heading; float radheading; int lastTime = 0;//initial is th
 float FLset; float FRset;float gjoy1_x1;float gjoy1_x2;float gjoy1_y1;float gjoy1_y2;// these stand for front right set and front left set, which refer to wheels on the robot
 //FL set is the front-left motor and the back-right motor, and FR set is the other two motors
 float joyAngle; // angle of the first joystick
-float setJoysticks(float joy1_x1,float joy1_x2,float joy1_y1,float joy1_y2){
-	gjoy1_x1=joy1_x1;
-	gjoy1_y1=joy1_x2;
-	gjoy1_x2=joy1_y1;
-	gjoy1_y2=joy1_y2;
+float setJoysticks(float xd,float xc,float xv,float xb){
+	gjoy1_x1=xd;
+	gjoy1_y1=xc;
+	gjoy1_x2=xv;
+	gjoy1_y2=xb;
 	return heading;
 }
 void moveDirection(float angle, float magnitude){ // sets the motor sets to move at certain speeds depending on the vector given
@@ -163,7 +163,7 @@ task display(){
 	}
 }
 
-task main(){
+task initializegyro(){
   initializeRobot();
 
  // wait for start of tele-op phase
