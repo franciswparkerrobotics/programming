@@ -10,5 +10,8 @@ totalVwant = powerp * 12000;
 powerp = totalVwant / avgbLVL;
 //turns percent back into input
 powerp = power * 100
+if(powerp >= 100){
+  powerp = 100;
+}
 return powerp;
 }
