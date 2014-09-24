@@ -9,13 +9,9 @@ totalVwant = powerp * 12000;
 //gets percent of power needed. milivoltage of max power / milivoltage of power availible;
 powerp = totalVwant / avgbLVL;
 //turns percent back into input
-<<<<<<< HEAD
 powerp = powerp * 100;
-=======
-powerp = power * 100
 if(powerp >= 100){
   powerp = 100;
 }
->>>>>>> origin/master
 return powerp;
 }
