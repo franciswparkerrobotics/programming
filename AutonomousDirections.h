@@ -51,7 +51,7 @@ void turnleft(int pwr,int rotations){
 	bMotorReflected[leftfront] = false;
 	bMotorReflected[rightrear] = false;
 	bMotorReflected[leftrear] = false;
-	while(nMotorEncoder[leftfront] <= rotations){
+	while(nMotorEncoder[rightfront] <= rotations){
 		motor[rightfront] = pwr;
 		motor[leftfront] = pwr;
 		motor[rightrear] = pwr;
