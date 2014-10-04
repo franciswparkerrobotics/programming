@@ -27,12 +27,11 @@ int dcS3_B, acS3_B = 0;
 int dcS4_B, acS4_B = 0;
 int dcS5_B, acS5_B = 0;
 
+task main{
 
+}
 // the default DSP mode is 1200 Hz.
 tHTIRS2DSPMode _mode = DSP_1200;
-
-task main ()
-{
 
 while(true){
   // Read the current non modulated signal direction
@@ -69,6 +68,4 @@ while(true){
    HTIRS2readAllDCStrength(HTIRS2B, dcS1_B, dcS2_B, dcS3_B, dcS4_B, dcS5_B);
    HTIRS2readAllACStrength(HTIRS2B, acS1_B, acS2_B, acS3_B, acS4_B, acS5_B);
 
-
-    }
-  }
+}
