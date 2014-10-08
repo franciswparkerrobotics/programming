@@ -1,8 +1,8 @@
-
+#include "IR_reader.h"
 task main()
 {
-int angle_a;
-int angle_b;
+int angle_a = dirDC_A*20;//convert ir reading into degrees
+int angle_b = dirDC_B*20;//convert ir reading into degrees
 int distance;
 #define length 18
 
