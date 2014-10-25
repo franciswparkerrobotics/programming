@@ -6,7 +6,7 @@
  * $Id: hitechnic-irseeker-v2-test1.c 133 2013-03-10 15:15:38Z xander $
  */
 
-#include "drivers/hitechnic-irseeker-v2.h"
+#include "..\..\..\..\..\..\..\..\Program Files (x86)\Robomatter Inc\ROBOTC Development Environment\Sample Programs\NXT\3rd Party Sensor Drivers\drivers\hitechnic-irseeker-v2.h"
 
 // global variables
 int dirAC_A = 0;
