@@ -14,6 +14,6 @@ task main()
 //power,rotations
 //1200 is around 1 rotation
 //1200 rotations turn is 270 degrees
-turnright(AM(100),6000);
-turnleft(AM(100),6000);
+//1. Drives off Ramp
+forward(25,3000);
 }
