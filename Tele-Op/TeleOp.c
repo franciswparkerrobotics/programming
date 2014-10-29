@@ -102,14 +102,11 @@ task main()
 	  if (joystick.joy2_x1 < 15 && joystick.joy2_x1 > -15){
 	  	joystick.joy2_x1 = 0;
 	  }
-	  //THIS CODE WILL NOT WORK UNTIL I KNOW WHAT THE REST STATE COORDS ARE OF THE JOYSTICK ON THE CONTROLLER
-	  /*
 	  int rpower = joystick.joy2_x1;
 	  int lpower = |joystick.joy2_x1|;
 	  motor[RightFront] = rpower;
 	  motor[LeftFront] = lpower;
 	  motor[RightRear] = rpower;
 	  motor[LeftRear] = lpower;
-	  */
 	}
 }
