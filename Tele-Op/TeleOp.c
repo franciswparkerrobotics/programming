@@ -102,11 +102,13 @@ task main()
 	  if (joystick.joy2_x1 < 15 && joystick.joy2_x1 > -15){
 	  	joystick.joy2_x1 = 0;
 	  }
+	  if(joystick.joy1_y1 == 0 && joystick.joy1_x1 == 0){
 	  int rpower = joystick.joy2_x1;
-	  int lpower = |joystick.joy2_x1|;
+	  int lpower = abs(joystick.joy2_x1);
 	  motor[RightFront] = rpower;
 	  motor[LeftFront] = lpower;
 	  motor[RightRear] = rpower;
 	  motor[LeftRear] = lpower;
+	}
 	}
 }
