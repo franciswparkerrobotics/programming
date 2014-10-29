@@ -77,6 +77,7 @@ task main()
   {
 	  getJoystickSettings(joystick);     // update buttons and joysticks
 
+	  //Left Joystick
 	  if (joystick.joy1_y1 < 15 && joystick.joy1_y1 > -15){
 	  	joystick.joy1_y1 = 0;
 	  }
@@ -93,5 +94,22 @@ task main()
 	  motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
 	  int lrdrive = joystick.joy1_y1 + joystick.joy1_x1;
 	  motor[LeftRear] = lrdrive;
+
+	  //Right Joystick
+	  if (joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
+	  	joystick.joy2_y1 = 0;
+	  }
+	  if (joystick.joy2_x1 < 15 && joystick.joy2_x1 > -15){
+	  	joystick.joy2_x1 = 0;
+	  }
+	  //THIS CODE WILL NOT WORK UNTIL I KNOW WHAT THE REST STATE COORDS ARE OF THE JOYSTICK ON THE CONTROLLER
+	  /*
+	  int rpower = joystick.joy2_x1;
+	  int lpower = |joystick.joy2_x1|;
+	  motor[RightFront] = rpower;
+	  motor[LeftFront] = lpower;
+	  motor[RightRear] = rpower;
+	  motor[LeftRear] = lpower;
+	  */
 	}
 }
