@@ -74,7 +74,12 @@ task main()
 
   waitForStart();   // wait for start of tele-op phase
 	bFloatDuringInactiveMotorPWM = false;
-  while (true)
+	startTask(ljoy);
+	startTask(rjoy);
+
+}
+task ljoy(){
+	while (true)
   {
 	  getJoystickSettings(joystick);     // update buttons and joysticks
 
@@ -85,32 +90,37 @@ task main()
 	  if (joystick.joy1_x1 < 15 && joystick.joy1_x1 > -15){
 	  	joystick.joy1_x1 = 0;
 	  }
-	  int rfdrive = joystick.joy1_y1 + joystick.joy1_x1;
+	  float rfdrive = joystick.joy1_y1 + joystick.joy1_x1;
 	  motor[RightFront] = rfdrive;  // motorB's powerlevel is set to the left stick's current x-value
-
-	  int lfdrive = joystick.joy1_y1 - joystick.joy1_x1;
+//6:03
+	  float lfdrive = joystick.joy1_y1 - joystick.joy1_x1;
 	  motor[LeftFront] = lfdrive;
 
-	  int rrdrive = joystick.joy1_y1 - joystick.joy1_x1;
+	  float rrdrive = joystick.joy1_y1 - joystick.joy1_x1;
 	  motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
-	  int lrdrive = joystick.joy1_y1 + joystick.joy1_x1;
+	  float lrdrive = joystick.joy1_y1 + joystick.joy1_x1;
 	  motor[LeftRear] = lrdrive;
+	}
+}
+task rjoy(){
+	//Right Joystick
+while(true){
 
-	  //Right Joystick
+	getJoystickSettings(joystick);
+
 	  if (joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
 	  	joystick.joy2_y1 = 0;
 	  }
 	  if (joystick.joy2_x1 < 15 && joystick.joy2_x1 > -15){
 	  	joystick.joy2_x1 = 0;
 	  }
-	  if(joystick.joy1_y1 == 0 && joystick.joy1_x1 == 0){
-	  int rpower = joystick.joy2_x1;
-	  int lpower = abs(joystick.joy2_x1);
+
+	  float rpower = joystick.joy2_x1;
+	  float lpower = abs(joystick.joy2_x1);
 	  motor[RightFront] = rpower;
 	  motor[LeftFront] = lpower;
 	  motor[RightRear] = rpower;
 	  motor[LeftRear] = lpower;
-	}
 	}
 }
 task drive(){
