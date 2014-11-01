@@ -111,36 +111,9 @@ while(chooseStick == true){
 	  motor[LeftRear] = lpower;
 	}
 }
-task drive(){
-	float x1,y1,x2,y2,LF,RF,LB,RB= 0;
-	int minJoy = 12;
-	while(true){
-		getJoystickSettings(joystick);
-		// Resets movement values
-		LF = 0;RF = 0;LB = 0;RB = 0;
-		// Get joystick values
-		x1 = joystick.joy1_x1 * .5;y1 = joystick.joy1_y1 * .5;
-		x2 = joystick.joy1_x2 * .5;y2 = joystick.joy1_y2 * .5;
-		// Handle Strafing Movement
-		LF += x1;RF -= x1;LB -= x1;RB += x1;
-		// Handle Regular Movement
-		LF += y1;RF += y1;LB += y1;RB += y1;
-		// Handle Turning Movement
-		LF += x2;RF -= x2;LB += x2;RB -= x2;
-		if (abs(joystick.joy1_x1)<minJoy&&abs(joystick.joy1_y1)<minJoy&&abs(joystick.joy1_x2)<minJoy){
-			LF = 0;RF = 0;LB = 0;RB = 0;
-		}
-		// Apply Finished values to motors.
-		motor[LeftFront] = LF;
-		motor[RightFront] = RF;
-		motor[LeftRear] = LB;
-		motor[RightRear] = RB;
-		wait1Msec(10); // necessary if using task control to allow for other tasks to run
-	}
-}
+
 task main()
 {
-	// James- startTask(Drive) for the code that worked before
   initializeRobot();
 
   waitForStart();   // wait for start of tele-op phase
