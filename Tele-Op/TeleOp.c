@@ -66,23 +66,12 @@ void initializeRobot()
 // At the end of the tele-op period, the FMS will autonmatically abort (stop) execution of the program.
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
-
-task main()
-{
-	// James- startTask(Drive) for the code that worked before
-  initializeRobot();
-
-  waitForStart();   // wait for start of tele-op phase
-	bFloatDuringInactiveMotorPWM = false;
-	startTask(ljoy);
-	startTask(rjoy);
-
-}
-task ljoy(){
-	while (true)
-  {
-	  getJoystickSettings(joystick);     // update buttons and joysticks
-
+bool chooseStick;
+task leftj(){
+	chooseStick = false;
+	while (chooseStick == false)
+  {    // update buttons and joysticks
+		getJoystickSettings(joystick);
 	  //Left Joystick
 	  if (joystick.joy1_y1 < 15 && joystick.joy1_y1 > -15){
 	  	joystick.joy1_y1 = 0;
@@ -90,33 +79,32 @@ task ljoy(){
 	  if (joystick.joy1_x1 < 15 && joystick.joy1_x1 > -15){
 	  	joystick.joy1_x1 = 0;
 	  }
+	  if(joystick.joy1_x1 < 15 && joystick.joy1_x1 > -15 && joystick.joy1_y1 < 15 && joystick.joy1_y1 > -15){
+	    chooseStick = true;
+	  }
 	  float rfdrive = joystick.joy1_y1 + joystick.joy1_x1;
 	  motor[RightFront] = rfdrive;  // motorB's powerlevel is set to the left stick's current x-value
-//6:03
+
 	  float lfdrive = joystick.joy1_y1 - joystick.joy1_x1;
 	  motor[LeftFront] = lfdrive;
 
 	  float rrdrive = joystick.joy1_y1 - joystick.joy1_x1;
 	  motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
+
 	  float lrdrive = joystick.joy1_y1 + joystick.joy1_x1;
 	  motor[LeftRear] = lrdrive;
 	}
 }
-task rjoy(){
+task rightj(){
 	//Right Joystick
-while(true){
-
-	getJoystickSettings(joystick);
-
-	  if (joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
-	  	joystick.joy2_y1 = 0;
+while(chooseStick == true){
+	  getJoystickSettings(joystick);
+	  if (joystick.joy2_x2 < 15 && joystick.joy2_x2 > -15){
+	  	joystick.joy2_x2 = 0;
 	  }
-	  if (joystick.joy2_x1 < 15 && joystick.joy2_x1 > -15){
-	  	joystick.joy2_x1 = 0;
-	  }
+	  float rpower = joystick.joy2_x2;
+	  float lpower = abs(joystick.joy2_x2);
 
-	  float rpower = joystick.joy2_x1;
-	  float lpower = abs(joystick.joy2_x1);
 	  motor[RightFront] = rpower;
 	  motor[LeftFront] = lpower;
 	  motor[RightRear] = rpower;
@@ -149,4 +137,14 @@ task drive(){
 		motor[RightRear] = RB;
 		wait1Msec(10); // necessary if using task control to allow for other tasks to run
 	}
+}
+task main()
+{
+	// James- startTask(Drive) for the code that worked before
+  initializeRobot();
+
+  waitForStart();   // wait for start of tele-op phase
+	bFloatDuringInactiveMotorPWM = false;
+	StartTask(leftj);
+	StartTask(rightj);
 }
