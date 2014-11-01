@@ -63,17 +63,17 @@ task main ()
    HTIRS2readAllACStrength(HTIRS2B, acS1_B, acS2_B, acS3_B, acS4_B, acS5_B);
   */
 
-	if(10 - dirDC_B>dirDC_A) {
+	if((10 - dirDC_B)>dirDC_A) {
 		turnleft(50,100);
 	}
-	else if (dirDC_A>10 - dirDC_B) {
+	else if (dirDC_A>(10 - dirDC_B)) {
 		turnright(50,100);
 	}
-	else if (10 - dirDC_B==dirDC_A) {
+	else if ((10 - dirDC_B)==dirDC_A) {
 		forward(50,100);
 	}
 
-	if(dirDC_B == 9 && (10 - dirDC_B) == 9){
+	if((dirDC_B == 9) && ((10 - dirDC_B) == 9)){
 		allstop();
 		done = true;
 	}
