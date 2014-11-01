@@ -89,4 +89,11 @@ void moveleft (int pwr, int rotations) {
 		motor [rightrear] = pwr;
 		motor [leftrear] = pwr;
 	}
+
+void allstop (void) {
+		motor[rightfront] = 0;
+		motor[leftfront] = 0;
+		motor [rightrear] = 0;
+		motor [leftrear] = 0;
+	}
 }
