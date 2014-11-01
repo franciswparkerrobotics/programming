@@ -64,13 +64,22 @@ task main ()
   */
 
 	if((10 - dirDC_B)>dirDC_A) {
-		turnleft(50,100);
+		motor[RightFront] = 50;
+		motor[LeftFront] = 50;
+		motor[RightRear] = 50;
+		motor[LeftRear] = 50;
 	}
 	else if (dirDC_A>(10 - dirDC_B)) {
-		turnright(50,100);
+		motor[RightFront] = 50;
+		motor[LeftFront] = 50;
+		motor[RightRear] = 50;
+		motor[LeftRear] = 50;
 	}
 	else if ((10 - dirDC_B)==dirDC_A) {
-		forward(50,100);
+		motor[RightFront] = 50;
+		motor[LeftFront] = 50;
+		motor[RightRear] = 50;
+		motor[LeftRear] = 50;
 	}
 
 	if((dirDC_B == 9) && ((10 - dirDC_B) == 9)){
