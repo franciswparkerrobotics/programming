@@ -100,3 +100,8 @@ void allstop (void) {
 		motor [RightRear] = 0;
 		motor [LeftRear] = 0;
 	}
+	//THIS MAY NOT WORK
+void offramp (void) {
+forward(100,2400);
+turnright(100,1200);
+}
