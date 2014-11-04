@@ -14,7 +14,13 @@ task main()
 //power,rotations
 //1200 is around 1 rotation
 //1200 rotations turn is 270 degrees
-//1. Drives off Ramp CHANGE NUMBERS
+//power,rotations
+//1200 is around 1 rotation
+//1200 rotations turn is 270 degrees
+//1. Drives off Ramp
+//2. Move rolling goal to parking zone
+//3. Score in 30cm goal
+//4. Knock over Center Poll
 forward(100,2400);
 turnright(100,1200);
 
