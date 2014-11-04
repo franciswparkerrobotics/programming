@@ -112,22 +112,6 @@ while(true){
 	  }
 	}
 }
-task rightj(){
-	//Right Joystick
-while(true){
-	  getJoystickSettings(joystick);
-	  if (joystick.joy2_x2 < 15 && joystick.joy2_x2 > -15){
-	  	joystick.joy2_x2 = 0;
-	  }
-	  float rpower = joystick.joy2_x2;
-	  float lpower = joystick.joy2_x2 * -1;
-
-	  motor[RightFront] = rpower;
-	  motor[LeftFront] = lpower;
-	  motor[RightRear] = rpower;
-	  motor[LeftRear] = lpower;
-	}
-}
 
 task main()
 {
@@ -135,7 +119,10 @@ task main()
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
   StartTask(leftj);
+<<<<<<< HEAD:Tele-Op/TeleOp.c
   StartTask(rightj);
+=======
+>>>>>>> origin/master:Tele-Op/The James Tele-Op/TeleOp.c
   while(true){
   	wait1Msec(10);
 
