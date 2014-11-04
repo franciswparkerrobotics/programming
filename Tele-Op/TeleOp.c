@@ -108,8 +108,9 @@ task main()
   initializeRobot();
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
-  while(true){
   StartTask(leftj);
   StartTask(rightj);
+  while(true){
+  wait1Msec(10);
   }
 }
