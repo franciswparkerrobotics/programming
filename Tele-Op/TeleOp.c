@@ -112,22 +112,6 @@ while(true){
 	  }
 	}
 }
-task rightj(){
-	//Right Joystick
-while(true){
-	  getJoystickSettings(joystick);
-	  if (joystick.joy2_x2 < 15 && joystick.joy2_x2 > -15){
-	  	joystick.joy2_x2 = 0;
-	  }
-	  float rpower = joystick.joy2_x2;
-	  float lpower = joystick.joy2_x2 * -1;
-
-	  motor[RightFront] = rpower;
-	  motor[LeftFront] = lpower;
-	  motor[RightRear] = rpower;
-	  motor[LeftRear] = lpower;
-	}
-}
 
 task main()
 {
