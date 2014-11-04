@@ -135,7 +135,7 @@ task main()
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
   StartTask(leftj);
-  //StartTask(rightj);
+  StartTask(rightj);
   while(true){
   	wait1Msec(10);
 
