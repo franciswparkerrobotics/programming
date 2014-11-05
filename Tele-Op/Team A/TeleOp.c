@@ -81,22 +81,22 @@ task Buttons(){
 
     if(joy1Btn(1) == 1)                  // If Joy1-Button1 is pressed:
     {
-      servo[LeftGoal] = 180;
+      servo[LeftGoal] = 230;
       servo[RightGoal] = 0;
     }
     else                            // If Joy1-Button1 is NOT pressed:
     {
      servo[LeftGoal] = 0;
-     servo[RightGoal] = 180;
+     servo[RightGoal] = 230;
     }
   }
 
 
 }
 
-
-task drive(){
 	float x1,y1,x2,y2,LF,RF,LB,RB= 0;
+task drive(){
+
 	int minJoy = 12;
 	while(true){
 		// Resets movement values
@@ -105,9 +105,10 @@ task drive(){
 		x1 = joystick.joy1_x1 * .5;y1 = joystick.joy1_y1 * .5;
 		x2 = joystick.joy1_x2 * .5;y2 = joystick.joy1_y2 * .5;
 		// Handle Strafing Movement
-		LF += x1;RF -= x1;LB -= x1;RB += x1;
+//		LF += x1;RF -= x1;LB -= x1;RB += x1;
 		// Handle Regular Movement
-		LF += y1;RF += y1;LB += y1;RB += y1;
+//		LF += y1;RF += y1;LB += y1;RB += y1;
+		RF = y1 - x1; LF = y1 + x1; RB = y1 + x1; LB = y1 - x1;
 		// Handle Turning Movement
 		LF += x2;RF -= x2;LB += x2;RB -= x2;
 		if (abs(joystick.joy1_x1)<minJoy&&abs(joystick.joy1_y1)<minJoy&&abs(joystick.joy1_x2)<minJoy){

@@ -67,35 +67,45 @@ task main ()
    HTIRS2readAllACStrength(HTIRS2B, acS1_B, acS2_B, acS3_B, acS4_B, acS5_B);
   */
 
-  //eliminate bad values
- //throw out values of 0- I think this has a chance of being right because 0 is false.
-  leftIR = dirDC_A || dirAC_A;
- 	rightIR = dirDC_B || dirAC_B;
+//     eliminate bad values
 
+//  leftIR = dirDC_A || dirAC_A;
+ //	rightIR = dirDC_B || dirAC_B;
+/*if(dirDC_A==0&&dirAC_A==0){leftIR=0;}
+else if(dirAC_A==0){leftIR=dirDC_A;}
+else if(dirDC_A==0){leftIR=dirAC_A;}
+else {leftIR=(dirDC_A+dirAC_A)/2;}
 
+if(dirDC_A==0&&dirAC_A==0){leftIR=0;}
+else if(dirAC_A==0){leftIR=dirDC_A;}
+else if(dirDC_A==0){leftIR=dirAC_A;}
+else {leftIR=(dirDC_A+dirAC_A)/2;}*/
+//Failed attempts at eliminating bad values
+leftIR=dirDC_A;
+rightIR=dirDC_B;
+/**********************************/
 
-
-if(dirDC_A == 0 && dirDC_B==0){
+if(leftIR == 0 && rightIR==0){
 	turnleft(70,10);
 }
-else if(dirDC_A==0){
+else if(leftIR==0){
 	turnright(30,10);
 }
-else if(dirDC_B==0){
+else if(rightIR==0){
 	turnleft(30,10);
 }
 else{
-	if((dirDC_B >= 8) && ((10 - dirDC_B) >= 8)){
+	if((rightIR >= 8) && ((10 - rightIR) >= 8)){
 		allstop();
 		done = true;
 }
-	else if((10 - dirDC_B)>dirDC_A) {
+	else if((10 - rightIR)>leftIR) {
 		turnleft(30,10);
 	}
-	else if(dirDC_A>(10 - dirDC_B)) {
+	else if(leftIR>(10 - rightIR)) {
 		turnright(30,10);
 	}
-	else if((10 - dirDC_B)==dirDC_A) {
+	else if((10 - rightIR)==leftIR) {
 		forward(30,10);}
 
 	}

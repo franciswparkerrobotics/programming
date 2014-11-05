@@ -119,10 +119,10 @@ task main()
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
   StartTask(leftj);
-<<<<<<< HEAD:Tele-Op/TeleOp.c
+//<<<<<<< HEAD:Tele-Op/TeleOp.c
   StartTask(rightj);
 =======
->>>>>>> origin/master:Tele-Op/The James Tele-Op/TeleOp.c
+//>>>>>>> origin/master:Tele-Op/The James Tele-Op/TeleOp.c
   while(true){
   	wait1Msec(10);
 
