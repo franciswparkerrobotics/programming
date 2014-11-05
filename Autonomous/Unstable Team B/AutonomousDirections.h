@@ -37,12 +37,12 @@ void backward(int pwr,int rotations){
 }
 // TURNS RIGHT >.>
 void turnright(int pwr,int rotations){
-	nMotorEncoder[RightFront] = 0;
+	nMotorEncoder[RightRear] = 0;
 	bMotorReflected[RightFront] = true;
 	bMotorReflected[LeftFront] = true;
 	bMotorReflected[RightRear] = true;
 	bMotorReflected[LeftRear] = true;
-	while(nMotorEncoder[RightFront] <= rotations){
+	while(nMotorEncoder[RightRear] <= rotations){
 		motor[RightFront] = pwr;
 		motor[LeftFront] = pwr;
 		motor[RightRear] = pwr;
@@ -56,7 +56,7 @@ void turnleft(int pwr,int rotations){
 	bMotorReflected[LeftFront] = false;
 	bMotorReflected[RightRear] = false;
 	bMotorReflected[LeftRear] = false;
-	while(nMotorEncoder[RightFront] <= rotations){
+	while(nMotorEncoder[LeftFront] <= rotations){
 		motor[RightFront] = pwr;
 		motor[LeftFront] = pwr;
 		motor[RightRear] = pwr;
@@ -71,7 +71,7 @@ void moveright (int pwr, int rotations) {
 	bMotorReflected[LeftFront] = false;
 	bMotorReflected[RightRear] = false;
 	bMotorReflected[LeftRear] = true;
-	while(nMotorEncoder[RightFront] <= rotations) {
+	while(nMotorEncoder[LeftFront] <= rotations) {
 		motor[RightFront] = pwr;
 		motor[LeftFront] = pwr;
 		motor [RightRear] = pwr;
@@ -85,7 +85,7 @@ void moveleft (int pwr, int rotations) {
 	bMotorReflected[LeftFront] = true;
 	bMotorReflected[RightRear] = true;
 	bMotorReflected[LeftRear] = false;
-	while(nMotorEncoder[RightFront] <= rotations) {
+	while(nMotorEncoder[LeftFront] <= rotations) {
 		motor[RightFront] = pwr;
 		motor[LeftFront] = pwr;
 		motor [RightRear] = pwr;

@@ -12,18 +12,18 @@
 task main()
 {
 //power,rotations
-//1200 is around 1 rotation
-//1200 rotations turn is 270 degrees
-//power,rotations
-//1200 is around 1 rotation
-//1200 rotations turn is 270 degrees
+//2500 is around 1 rotation
+//2500 rotations turn is 90 degrees
 
 //1. Drives off Ramp
-backward(10,5400);
-turnleft(100,1200);
-backward(10,1400);
-moveright(50,5400);
-backward(10,1200);
+
+backward(10,2500);
+turnleft(5,300);
+backward(10,7500);
+turnleft(30,3500);
+backward(10,2800);
+moveright(50,8750);
+backward(10,2500);
 
 //2. Move rolling goal to parking zone
 
