@@ -69,17 +69,16 @@ task main ()
 
 //     eliminate bad values
 
-//  leftIR = dirDC_A || dirAC_A;
- //	rightIR = dirDC_B || dirAC_B;
-/*if(dirDC_A==0&&dirAC_A==0){leftIR=0;}
-else if(dirAC_A==0){leftIR=dirDC_A;}
-else if(dirDC_A==0){leftIR=dirAC_A;}
-else {leftIR=(dirDC_A+dirAC_A)/2;}
 
 if(dirDC_A==0&&dirAC_A==0){leftIR=0;}
 else if(dirAC_A==0){leftIR=dirDC_A;}
 else if(dirDC_A==0){leftIR=dirAC_A;}
-else {leftIR=(dirDC_A+dirAC_A)/2;}*/
+else {leftIR=floor((dirDC_A+dirAC_A)/2);}
+
+if(dirDC_A==0&&dirAC_A==0){leftIR=0;}
+else if(dirAC_A==0){leftIR=dirDC_A;}
+else if(dirDC_A==0){leftIR=dirAC_A;}
+else {leftIR=floor((dirDC_A+dirAC_A)/2);}
 //Failed attempts at eliminating bad values
 leftIR=dirDC_A;
 rightIR=dirDC_B;
