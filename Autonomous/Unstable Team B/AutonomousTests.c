@@ -16,16 +16,16 @@ task main()
 //2500 rotations turn is 90 degrees
 
 //1. Drives off Ramp
-
-backward(10,2500);
-turnleft(5,300);
-backward(10,7500);
-turnleft(30,3500);
-backward(10,2800);
-moveright(50,8750);
-backward(10,2500);
-
 //2. Move rolling goal to parking zone
+
+backward(10,2500);
+turnleft(5,550);
+backward(10,7500);
+turnleft(30,2500);
+backward(50,2500);
+moveright(100,10000);
+backward(50,2500);
+allstop();
 
 
 //3. Score in 30cm goal
