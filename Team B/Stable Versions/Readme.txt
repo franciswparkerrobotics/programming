@@ -1,1 +1,0 @@
-This folder will be used for storing stable versions of robot code ONLY!
