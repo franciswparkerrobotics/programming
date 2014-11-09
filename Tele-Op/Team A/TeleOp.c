@@ -72,7 +72,27 @@ void initializeRobot()
 // At the end of the tele-op period, the FMS will autonmatically abort (stop) execution of the program.
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+float max (float a,float b){
+	if(a>=b){return a;}
+	else if(a<b){return b;}
+	else {return a;}
+}
 
+float norm4 (float in1, float in2, float in3, float in4){
+float ain1=abs(in1);float ain2=abs(in2);float ain3=abs(in3);float ain4=abs(in4);
+float comp1=max(ain1,ain2);
+float comp2=max(comp1,ain3);
+float comp3=max(comp2,ain4);
+//float comp3 = max(max(max(abs(in1),abs(in2)),abs(in3)),abs(in4));
+if(comp3>100){
+in1/=comp3*100;
+in2/=comp3*100;
+in3/=comp3*100;
+in4/=comp3*100;
+}
+float normal_out[4] = {in1,in2,in3,in4};
+return normal_out;
+}
 task Buttons(){
 
  while(true)
@@ -93,24 +113,22 @@ task Buttons(){
 
 
 }
-
-	float x1,y1,x2,y2,LF,RF,LB,RB= 0;
+float x1,y1,x2,y2,LF,RF,LB,RB= 0;
 task drive(){
 
-	int minJoy = 12;
+	int minJoy = 5;
 	while(true){
 		// Resets movement values
 		LF = 0;RF = 0;LB = 0;RB = 0;
 		// Get joystick values
-		x1 = joystick.joy1_x1 * .5;y1 = joystick.joy1_y1 * .5;
-		x2 = joystick.joy1_x2 * .5;y2 = joystick.joy1_y2 * .5;
-		// Handle Strafing Movement
-//		LF += x1;RF -= x1;LB -= x1;RB += x1;
-		// Handle Regular Movement
-//		LF += y1;RF += y1;LB += y1;RB += y1;
-		RF = y1 - x1; LF = y1 + x1; RB = y1 + x1; LB = y1 - x1;
-		// Handle Turning Movement
-		LF += x2;RF -= x2;LB += x2;RB -= x2;
+		x1 = joystick.joy1_x1*.6;y1 = joystick.joy1_y1*.6;
+		x2 = joystick.joy1_x2*.6;y2 = joystick.joy1_y2*.6;
+
+		LF = x1-x2+y1; RF = y1+x2-x1; LB = y1-x2-x1; RB = y1+x2+x1;
+	///	float normout[4]={0,0,0,0};
+//		normout= norm4(LF,RF,LB,RB);
+//		LF=normout[0];RF=normout[1];LB=normout[2];RB=normout[3];
+
 		if (abs(joystick.joy1_x1)<minJoy&&abs(joystick.joy1_y1)<minJoy&&abs(joystick.joy1_x2)<minJoy){
 			LF = 0;RF = 0;LB = 0;RB = 0;
 		}
