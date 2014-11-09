@@ -17,13 +17,38 @@
 task main()
 {
 //power,rotations
-//2500 is around 1 rotation
+//1440 is around 1 rotation
 //2500 rotations turn is 90 degrees
 
-//1. Drives off Ramp
-//2. Move rolling goal to parking zone
+
+			//Initialize servos
+		 	servo[LeftGoal] = 0;
+     	servo[RightGoal] = 230;
+
+     	//1. Drives off Ramp
+			backward(50,14000);
+
+			//2. Grab the goal
+			servo[LeftGoal] = 230;
+      servo[RightGoal] = 0;
+
+
+//3. Drop the ball
+			//4. Move to parking zone
+			turnleft(,550);
+			backward(50,7500);
+
+
+
 
 forward(50,100000)
+
+
+
+
+
+
+
 //3. Score in 30cm goal
 
 //4. Knock over Center Poll
