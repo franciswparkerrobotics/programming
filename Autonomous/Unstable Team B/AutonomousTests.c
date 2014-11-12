@@ -19,17 +19,19 @@ task main()
 
 //1. Drives off Ramp
 //2. Move rolling goal to parking zone
-backward(10,10000);
-turnleft(30,2500);
-backward(30,2500);
-moveright(50,10000);
-backward(30,2500);
+backward(10,5000);
+turnleft(10,500);
+backward(10,5000);
+turnleft(100,2500);
+backward(100,2500);
+moveright(100,10000);
+backward(100,2500);
 allstop();
 
 //3. Score in 30cm goal
 
 //4. Knock over Center Poll
-
+//Need IR Beacon Stuff Here
 
 
 }
