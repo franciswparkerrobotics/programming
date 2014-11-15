@@ -6,10 +6,12 @@
 #pragma config(Motor,  mtr_S1_C1_2,     LeftRear,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     RightFront,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop)
+
+int rightp;
+int leftp;
 int lpwr(int pwr){
 if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
 	pwr += 1;
-//	checkSync(pwr,rotations);
 	return pwr;
 }else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
 	pwr -= 1;
@@ -20,25 +22,16 @@ return pwr;
 int rpwr(int pwr){
 if(nMotorEncoder[LeftRear] > nMotorEncoder[RightRear]){
 	pwr += 1;
-//	checkSync(pwr,rotations);
 	return pwr;
-}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
 	pwr -= 1;
 }
 return pwr;
 }
 
-void getRotations(int rpwr, int lpwr){
-if(rpwr < lpwr){
-nMotorEncoder[RightRear] = nMotorEncoder[LeftRear];
-}else if(lpwr < rpwr){
-nMotorEncoder[LeftRear] = nMotorEncoder[RightRear];
-}else{
-
-}
-}
-
 void forward(int pwr,int rotations){
+	rightp = pwr;
+	leftp = pwr;
 	nMotorEncoder[RightFront] = 0;
 	nMotorEncoder[LeftRear] = 0;
 	nMotorEncoder[RightRear] = 0;
@@ -47,15 +40,21 @@ void forward(int pwr,int rotations){
 	bMotorReflected[LeftFront] = true;
 	bMotorReflected[RightRear] = false;
 	bMotorReflected[LeftRear] = true;
-	while(nMotorEncoder[RightFront] <= rotations && nMotorEncoder[LeftRear] <= rotations && nMotorEncoder[LeftFront] <= rotations && nMotorEncoder[RightRear] <= rotations){
-		getRotations(rpwr(pwr),lpwr(pwr));
-		motor[LeftFront] = lpwr(pwr);
-		motor[RightFront] = rpwr(pwr);
-		motor[RightRear] = rpwr(pwr);
-		motor[LeftRear] = lpwr(pwr);
+	while(nMotorEncoder[RightFront] <= rotations && nMotorEncoder[LeftFront] <= rotations){
+		leftp = lpwr(leftp);
+		rightp = rpwr(rightp);
+		motor[LeftFront] = leftp;
+		motor[RightFront] = rightp;
+		motor[RightRear] = rightp;
+		motor[LeftRear] = leftp;
+		wait10Msec(10);
+
 	}
 }
 task main()
 {
-forward(10,5000);
+forward(30,5000);
+while(true){
+wait10Msec(10);
+}
 }
