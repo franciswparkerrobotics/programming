@@ -9,21 +9,23 @@
 
 int rightp;
 int leftp;
+int global1;
+int global2;
 int lpwr(int pwr){
-if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
+if(nMotorEncoder[RightRear] - 50 > nMotorEncoder[LeftRear]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear] - 50){
 	pwr -= 1;
 }
 return pwr;
 }
 
 int rpwr(int pwr){
-if(nMotorEncoder[LeftRear] > nMotorEncoder[RightRear]){
+if(nMotorEncoder[LeftRear] - 50 > nMotorEncoder[RightRear]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightRear] - 50 > nMotorEncoder[LeftRear]){
 	pwr -= 1;
 }
 return pwr;
@@ -37,24 +39,22 @@ void forward(int pwr,int rotations){
 	nMotorEncoder[RightRear] = 0;
 	nMotorEncoder[LeftFront] = 0;
 	bMotorReflected[RightFront] = false;
-	bMotorReflected[LeftFront] = true;
+  bMotorReflected[LeftFront] = true;
 	bMotorReflected[RightRear] = false;
 	bMotorReflected[LeftRear] = true;
 	while(nMotorEncoder[RightFront] <= rotations && nMotorEncoder[LeftFront] <= rotations){
 		leftp = lpwr(leftp);
 		rightp = rpwr(rightp);
+		global1 = nMotorEncoder[RightRear];
+		global2 = nMotorEncoder[LeftRear];
 		motor[LeftFront] = leftp;
 		motor[RightFront] = rightp;
 		motor[RightRear] = rightp;
 		motor[LeftRear] = leftp;
 		wait10Msec(10);
-
 	}
 }
 task main()
 {
-forward(30,5000);
-while(true){
-wait10Msec(10);
-}
+forward(30,10000);
 }

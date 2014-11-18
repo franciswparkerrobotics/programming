@@ -97,7 +97,6 @@ while(true){
 	  float lpower = joystick.joy1_x2 * -1;
 
 	  if(joystick.joy1_x1 == 0 && joystick.joy1_y1 == 0){
-	  getJoystickSettings(joystick);
 
 	  motor[RightFront] = rpower;
 
@@ -122,7 +121,6 @@ while(true){
 task televator{
 bool isDead;
 while(true){
-getJoystickSettings(joystick);
 if(joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
 	joystick.joy2_y1 = 0;
 	isDead = true;
@@ -139,7 +137,6 @@ motor[elevator] = 0;
 }
 }
 task dump(){
-	getJoystickSettings(joystick);
 while(true){
 if(joystick.joy2_Buttons == 3){
 	servo[dumper] = 126;
@@ -156,7 +153,7 @@ task main()
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
   StartTask(teleop);
-  StartTask(televator);
+ 	StartTask(televator);
   StartTask(dump);
   while(true){
   	wait1Msec(10);
