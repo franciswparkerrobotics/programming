@@ -119,18 +119,22 @@ while(true){
 	  }
 	}
 }
-task televator(){
+task televator{
+bool isDead;
 while(true){
 getJoystickSettings(joystick);
 if(joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
 	joystick.joy2_y1 = 0;
-}
-if(joystick.joy2_y1 > 15){
-	motor[elevator] = 20;
-}else if(joystick.joy2_y1 < 15){
-	motor[elevator] = -20;
+	isDead = true;
 }else{
-nMotorEncoder[elevator] = 0;
+	isDead = false;
+}
+if(joystick.joy2_y1 > 15 && isDead == false){
+	motor[elevator] = -20;
+}else if(joystick.joy2_y1 < 15 && isDead == false){
+	motor[elevator] = 20;
+}else{
+motor[elevator] = 0;
 }
 }
 }
