@@ -12,20 +12,20 @@ int leftp;
 int global1;
 int global2;
 int lpwr(int pwr){
-if(nMotorEncoder[RightRear] - 50 > nMotorEncoder[LeftRear]){
+if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear] - 50){
+}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
 	pwr -= 1;
 }
 return pwr;
 }
 
 int rpwr(int pwr){
-if(nMotorEncoder[LeftRear] - 50 > nMotorEncoder[RightRear]){
+if(nMotorEncoder[LeftRear] > nMotorEncoder[RightRear]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] - 50 > nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
 	pwr -= 1;
 }
 return pwr;

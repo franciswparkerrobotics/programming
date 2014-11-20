@@ -1,11 +1,12 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
-#pragma config(Motor,  mtr_S1_C1_1,     LeftFront,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     RightFront,    tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_1,     LeftRear,      tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     RightRear,     tmotorTetrix, openLoop, reversed)
+#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C1_2,     LeftRear,      tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C4_1,     elevator,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C3_1,    dumper,               tServoStandard)
+#pragma config(Servo,  srvo_S1_C3_1,    dumper,               tServoContinuousRotation)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_4,    servo4,               tServoNone)
@@ -108,13 +109,14 @@ while(true){
 
 	  }else{
 
-	  motor[RightFront] = rfdrive;  // motorB's powerlevel is set to the left stick's current x-value
+	  motor[LeftRear] = 50;
 
-	  motor[LeftFront] = lfdrive;
+	  motor[RightFront] = 20;  // motorB's powerlevel is set to the left stick's current x-value
 
-	  motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
+	  //motor[LeftFront] = lfdrive;
 
-	  motor[LeftRear] = lrdrive;
+	  //motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
+
 	  }
 	}
 }
@@ -128,9 +130,9 @@ if(joystick.joy2_y1 < 15 && joystick.joy2_y1 > -15){
 	isDead = false;
 }
 if(joystick.joy2_y1 > 15 && isDead == false){
-	motor[elevator] = -20;
+	motor[elevator] = -30;
 }else if(joystick.joy2_y1 < 15 && isDead == false){
-	motor[elevator] = 20;
+	motor[elevator] = 40;
 }else{
 motor[elevator] = 0;
 }
@@ -139,7 +141,7 @@ motor[elevator] = 0;
 task dump(){
 while(true){
 if(joystick.joy2_Buttons == 3){
-	servo[dumper] = 126;
+	servo[dumper] = 255;
 }else if(joystick.joy2_Buttons == 2){
 	servo[dumper] = 0;
 }else{
