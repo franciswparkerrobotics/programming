@@ -1,9 +1,11 @@
-#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  none)
+#pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Motor,  mtr_S1_C1_1,     LeftFront,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     RightFront,    tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C2_1,     LeftRear,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     RightRear,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C4_1,     hwShooter,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    LeftGoal,             tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    RightGoal,            tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_3,    Dumper,               tServoStandard)
@@ -64,23 +66,26 @@ void initializeRobot()
 
 
 
-task Buttons(){
+task manipulator(){
 
  while(true)
   {
     getJoystickSettings(joystick);  // Update Buttons and Joysticks
 
-    if(joy1Btn(1) == 1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
+    if(joy2Btn(1) == 1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
     else{servo[LeftGoal] = 140;servo[RightGoal] = 90;}
 
-    if(joy1Btn(2) == 1){servo[Dumper] = 0;}
+    if(joy2Btn(2) == 1){servo[Dumper] = 0;}
     else{servo[Dumper]=100;}
+
+
+    motor[hwShooter] = joystick.joy2_y1*100/128;
   }
 
 
 }
 float x1,y1,x2,y2,LF,RF,LB,RB= 0;
-task drive(){
+task driver(){
 
 	int minJoy = 5;
 	while(true){
@@ -110,8 +115,8 @@ task main()
   initializeRobot();
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
-  StartTask(drive);
-  StartTask(Buttons);
+  StartTask(driver);
+  StartTask(manipulator);
   while(true){
   wait1Msec(10);
 
