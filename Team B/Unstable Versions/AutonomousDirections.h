@@ -70,10 +70,10 @@ void forward(int pwr,int rotations){
 		wait10Msec(10);
 	}
 }
+int globalA;
+int globalB;
 // GOES BACKWARD (:
 void backward(int pwr,int rotations){
-	rightp = 0;
-	leftp = 0;
 	rightp = pwr;
 	leftp = pwr;
 	nMotorEncoder[RightRear] = 0;
@@ -87,6 +87,8 @@ void backward(int pwr,int rotations){
 		while(nMotorEncoder[RightRear] <= rotations && nMotorEncoder[LeftRear] <= rotations){
 		leftp = lpwrb(leftp);
 		rightp = rpwrb(rightp);
+		globalA = nMotorEncoder[RightFront];
+		globalB = nMotorEncoder[LeftFront];
 		motor[LeftFront] = leftp;
 		motor[RightFront] = rightp;
 		motor[RightRear] = rightp;

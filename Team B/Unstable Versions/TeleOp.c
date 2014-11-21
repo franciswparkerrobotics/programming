@@ -6,7 +6,7 @@
 #pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C4_1,     elevator,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorTetrix, openLoop)
-#pragma config(Servo,  srvo_S1_C3_1,    dumper,               tServoContinuousRotation)
+#pragma config(Servo,  srvo_S1_C3_1,    dumper,               tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    servo2,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_3,    servo3,               tServoNone)
 #pragma config(Servo,  srvo_S1_C3_4,    servo4,               tServoNone)
@@ -74,6 +74,7 @@ void initializeRobot()
 // At the end of the tele-op period, the FMS will autonmatically abort (stop) execution of the program.
 //
 /////////////////////////////////////////////////////////////////////////////////////////////////////
+
 task teleop(){
    // update buttons and joysticks
 while(true){
@@ -109,13 +110,13 @@ while(true){
 
 	  }else{
 
-	  motor[LeftRear] = 50;
+	  motor[LeftRear] = lrdrive;
 
-	  motor[RightFront] = 20;  // motorB's powerlevel is set to the left stick's current x-value
+	  motor[LeftFront] = lfdrive;
 
-	  //motor[LeftFront] = lfdrive;
+	  motor[RightFront] = rfdrive - 15;
 
-	  //motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
+	  motor[RightRear] = rrdrive - 15;  // motorB's powerlevel is set to the left stick's current x-value
 
 	  }
 	}
@@ -139,14 +140,9 @@ motor[elevator] = 0;
 }
 }
 task dump(){
+	bool shouldDump;
 while(true){
-if(joystick.joy2_Buttons == 3){
-	servo[dumper] = 255;
-}else if(joystick.joy2_Buttons == 2){
-	servo[dumper] = 0;
-}else{
 
-}
 }
 }
 task main()

@@ -16,9 +16,9 @@
 
 task main()
 {
-nMotorEncoder[RightFront] = 0;
-while(nMotorEncoder[RightFront] < 2500){
-motor[RightFront] = 100;
+nMotorEncoder[LeftRear] = 0;
+while(nMotorEncoder[LeftRear] < 2500){
+motor[LeftRear] = 100;
 }
 
 }
