@@ -1,9 +1,9 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Motor,  mtr_S1_C1_1,     LeftFront,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C1_2,     RightFront,    tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_1,     LeftRear,      tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     RightRear,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_2,     LeftRear,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_1,     hwShooter,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    LeftGoal,             tServoStandard)
@@ -19,7 +19,7 @@
 
 /////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//                                    initializeRobot
+//                                    initializeRobotx
 //
 // Prior to the start of tele-op mode, you may want to perform some initialization on your robot
 // and the variables within your program.
@@ -70,7 +70,7 @@ task manipulator(){
 
  while(true)
   {
-    getJoystickSettings(joystick);  // Update Buttons and Joysticks
+    //getJoystickSettings(joystick);  // Update Buttons and Joysticks
 
     if(joy2Btn(1) == 1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
     else{servo[LeftGoal] = 140;servo[RightGoal] = 90;}
@@ -85,22 +85,27 @@ task manipulator(){
 
 }
 float x1,y1,x2,y2,LF,RF,LB,RB= 0;
+
 task driver(){
 
 	int minJoy = 5;
 	while(true){
 		// Resets movement values
-		LF = 0;RF = 0;LB = 0;RB = 0;
+
 		// Get joystick values
-		x1 = joystick.joy1_x1*.5;y1 = joystick.joy1_y1*.5;
+		x1 = joystick.joy1_x1*.5;y1 = -joystick.joy1_y1*.5;
 		x2 = joystick.joy1_x2*.5;y2 = joystick.joy1_y2*.5;
 
-		LF = x1-x2+y1; RF = y1+x2-x1; LB = y1-x2-x1; RB = y1+x2+x1;
-
+		//LF = x1; RF = x1; LB = -x1; RB = -x1;
+		 LF = -x2 +y1 -x1;
+		 RF = x2 +y1 +x1;
+		 LB = -x2 +y1 +x1;
+		 RB = x2 + y1 -x1;
 
 		if (abs(joystick.joy1_x1)<minJoy&&abs(joystick.joy1_y1)<minJoy&&abs(joystick.joy1_x2)<minJoy){
 			LF = 0;RF = 0;LB = 0;RB = 0;
 		}
+
 		// Apply Finished values to motors.
 		motor[LeftFront] = LF;
 		motor[RightFront] = RF;
