@@ -16,6 +16,13 @@
 
 #include "SyncedAutonomousDirections.h"
 #include "AutonomousDirections.h"
+int RR, LR, RF, LF = 0;
+task showEncoders{
+	RR = nMotorEncoder[RightRear];
+	LR = nMotorEncoder[LeftRear];
+RF= 	nMotorEncoder[RightFront];
+	LF= nMotorEncoder[LeftFront];
+}
 task main()
 {
 //power,rotations
@@ -23,34 +30,35 @@ task main()
 //2500 rotations turn is 90 degrees
 //backward(10,10000);
 
-
+StartTask(showEncoders);
 
 			//Initialize servos
 		 	servo[LeftGoal] = 140;
      	servo[RightGoal] = 90;
      	servo[Dumper60]= 100;
-     	servo[Dumper30]= 0;
+     	servo[Dumper30]= 230;
 
      	//1. Drives off Ramp
-			backward(50,9000);
+			backward(25,8500);
 			wait1Msec(300);
 		//	moveleft(50,3000);
 		//	wait1Msec(300);
 		//	allstop();
 		//	forward(30,2000);
 		//	wait1Msec(300);
+			moveleft(50,50);
 			for (int i = 0; i <5; i++){
 				sturnleft(50,50);
-				//sbackward(50,50);
+				sbackward(50,50);
 				sturnright(50,50);
-				//sbackward(50,50);
+				sbackward(50,50);
 			}
 			//sbackward(30,50);
 			//wait1Msec(500);
 			servo[LeftGoal] = 230;
       servo[RightGoal] = 0;
       servo[Dumper60]=0;
-			//wait1Msec(500);
+			wait1Msec(500);
 			//sforward(50,500);
 			//smoveright(50,1000);
 			//wait1Msec(500);
