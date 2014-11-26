@@ -46,7 +46,7 @@ StartTask(showEncoders);
 		//	allstop();
 		//	forward(30,2000);
 		//	wait1Msec(300);
-			moveleft(50,50);
+			moveright(1000,50);
 			for (int i = 0; i <5; i++){
 				sturnleft(50,50);
 				sbackward(50,50);
