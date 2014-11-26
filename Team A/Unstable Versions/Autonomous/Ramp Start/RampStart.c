@@ -39,19 +39,21 @@ StartTask(showEncoders);
      	servo[Dumper30]= 230;
 
      	//1. Drives off Ramp
-			backward(25,8500);
+			backward(25,8000);
 			wait1Msec(300);
 		//	moveleft(50,3000);
 		//	wait1Msec(300);
 		//	allstop();
 		//	forward(30,2000);
 		//	wait1Msec(300);
-			moveright(1000,50);
+			turnright(1000,50);
 			for (int i = 0; i <5; i++){
 				sturnleft(50,50);
-				sbackward(50,50);
+				sbackward(50,10);
+				allstop();
 				sturnright(50,50);
-				sbackward(50,50);
+				sbackward(50,10);
+				allstop();
 			}
 			//sbackward(30,50);
 			//wait1Msec(500);

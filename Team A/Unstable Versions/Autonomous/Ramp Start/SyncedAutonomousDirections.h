@@ -21,7 +21,7 @@
 //int rightp;
 //int leftp;
 
-void allstop(void) {
+void ssallstop(void) {
 		motor[RightFront] = 0;
 		motor[LeftFront] = 0;
 		motor [RightRear] = 0;
@@ -94,7 +94,7 @@ void sforward(int pwr,int rotations){
 		motor[LeftRear] = leftp;
 		wait10Msec(8);
 	}
-	allstop();
+	sallstop();
 }
 //int globalA;
 //int globalB;
@@ -121,7 +121,7 @@ void sbackward(int pwr,int rotations){
 		motor[LeftRear] = leftp;
 		wait10Msec(8);
 }
-allstop();
+sallstop();
 	}
 // TURNS RIGHT >.>
 void sturnright(int pwr,int rotations){
@@ -145,7 +145,7 @@ void sturnright(int pwr,int rotations){
 		wait10Msec(8);
 
 	}
-	allstop();
+	sallstop();
 }
 //TURNS LEFT <.<
 void sturnleft(int pwr,int rotations){
@@ -169,7 +169,7 @@ void sturnleft(int pwr,int rotations){
 		wait10Msec(8);
 
 	}
-	allstop();
+	sallstop();
 }
 //movesright
 
@@ -194,7 +194,7 @@ void smoveright (int pwr, int rotations) {
 		wait10Msec(8);
 
 	}
-	allstop();
+	sallstop();
 }
 
 void smoveleft (int pwr, int rotations) {
@@ -218,5 +218,5 @@ void smoveleft (int pwr, int rotations) {
 		wait10Msec(8);
 
 	}
-	allstop();
+	sallstop();
 }
