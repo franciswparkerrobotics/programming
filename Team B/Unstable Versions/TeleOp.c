@@ -2,8 +2,8 @@
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
 #pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     LeftRear,      tmotorTetrix, openLoop, reversed)
-#pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_1,     LeftFront,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     RightFront,    tmotorTetrix, openLoop, reversed)
 #pragma config(Motor,  mtr_S1_C4_1,     elevator,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     motorI,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    dumper,               tServoStandard)
@@ -114,9 +114,9 @@ while(true){
 
 	  motor[LeftFront] = lfdrive;
 
-	  motor[RightFront] = rfdrive - 15;
+	  motor[RightFront] = rfdrive;
 
-	  motor[RightRear] = rrdrive - 15;  // motorB's powerlevel is set to the left stick's current x-value
+	  motor[RightRear] = rrdrive;  // motorB's powerlevel is set to the left stick's current x-value
 
 	  }
 	}
@@ -140,7 +140,6 @@ motor[elevator] = 0;
 }
 }
 task dump(){
-	bool shouldDump;
 while(true){
 
 }
@@ -151,8 +150,8 @@ task main()
   waitForStart();   // wait for start of tele-op phase
   bFloatDuringInactiveMotorPWM = false;
   StartTask(teleop);
- 	StartTask(televator);
-  StartTask(dump);
+ 	//StartTask(televator);
+  //StartTask(dump);
   while(true){
   	wait1Msec(10);
 }

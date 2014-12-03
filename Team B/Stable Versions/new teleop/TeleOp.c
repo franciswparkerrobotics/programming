@@ -90,10 +90,10 @@ while(true){
 	  	joystick.joy2_x2 = 0;
 	  }
 
-	  float rfdrive = joystick.joy1_y1/2 - joystick.joy1_x2/2 + joystick.joy1_x1/2;
-	  float lfdrive = joystick.joy1_y1/2 + joystick.joy1_x2/2 - joystick.joy1_x1/2;
-	  float rrdrive = joystick.joy1_y1/2 - joystick.joy1_x2/2 - joystick.joy1_x1/2;
-	  float lrdrive = joystick.joy1_y1/2 + joystick.joy1_x2/2 + joystick.joy1_x1/2;
+	  float rfdrive = joystick.joy1_y1/2 - joystick.joy1_x2/2 - joystick.joy1_x1/2;
+	  float lfdrive = joystick.joy1_y1/2 + joystick.joy1_x2/2 + joystick.joy1_x1/2 ;
+	  float rrdrive = joystick.joy1_y1/2 - joystick.joy1_x2/2 + joystick.joy1_x1/2;
+	  float lrdrive = joystick.joy1_y1/2 + joystick.joy1_x2/2 - joystick.joy1_x1/2;
 
 	  motor[RightFront] = rfdrive;
 	  motor[LeftFront] = lfdrive;
@@ -106,10 +106,10 @@ task elevator()
 	while(true)
 		{
 		if(joy2Btn(5) == 1){
-				motor[elevator_motor] = 40;
+				motor[elevator_motor] = 100;
 			}
 		else if(joy2Btn(6) == 1){
-				motor[elevator_motor] = -30;
+				motor[elevator_motor] = -100;
 			}
 		else{
 			motor[elevator_motor] = 0;
@@ -157,7 +157,15 @@ task intake()
 	}
 
 }
-
+task dropBall(){
+while(true){
+	if(joy2Btn(1) == 1){
+		servo[door] = 123;
+	}else{
+		servo[door] = 0;
+	}
+}
+}
 
 task main()
 {
@@ -168,6 +176,7 @@ task main()
   StartTask(grab);
   StartTask(elevator);
   StartTask(intake);
+  StartTask(dropBall);
   while(true){
   	wait1Msec(10);
 
