@@ -18,10 +18,12 @@
 #include "AutonomousDirections.h"
 int RR, LR, RF, LF = 0;
 task showEncoders{
+	while(1){
 	RR = nMotorEncoder[RightRear];
 	LR = nMotorEncoder[LeftRear];
-RF= 	nMotorEncoder[RightFront];
-	LF= nMotorEncoder[LeftFront];
+  RF = nMotorEncoder[RightFront];
+	LF = nMotorEncoder[LeftFront];
+}
 }
 task main()
 {
@@ -39,7 +41,16 @@ StartTask(showEncoders);
      	servo[Dumper30]= 230;
 
      	//1. Drives off Ramp
-			backward(25,8000);
+     	//forward(25,10000);
+     motor[LeftFront] = 10;
+		motor[RightFront] = 10;
+		motor[RightRear] = 10;
+		motor[LeftRear] = 10;
+
+    wait10Msec(200);
+		allstop();
+		wait10Msec(200);
+    sbackward(50,5000);
 			wait1Msec(300);
 		//	moveleft(50,3000);
 		//	wait1Msec(300);

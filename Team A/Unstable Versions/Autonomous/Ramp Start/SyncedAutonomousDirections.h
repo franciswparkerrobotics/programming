@@ -21,7 +21,7 @@
 //int rightp;
 //int leftp;
 
-void ssallstop(void) {
+void sallstop(void) {
 		motor[RightFront] = 0;
 		motor[LeftFront] = 0;
 		motor [RightRear] = 0;
@@ -32,10 +32,10 @@ void ssallstop(void) {
 
 //Left Power Forward
 int lpwr(int pwr){
-if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
+if(nMotorEncoder[RightFront] > nMotorEncoder[LeftFront]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightFront] < nMotorEncoder[LeftFront]){
 	pwr -= 1;
 }
 return pwr;
@@ -43,10 +43,10 @@ return pwr;
 
 //Right Power Forward
 int rpwr(int pwr){
-if(nMotorEncoder[LeftRear] > nMotorEncoder[RightRear]){
+if(nMotorEncoder[LeftFront] > nMotorEncoder[RightFront]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightFront] > nMotorEncoder[LeftFront]){
 	pwr -= 1;
 }
 return pwr;
@@ -54,10 +54,10 @@ return pwr;
 
 //Left Power Backwards
 int lpwrb(int pwr){
-if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
+if(nMotorEncoder[RightFront] < nMotorEncoder[LeftFront]){
 	pwr -= 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] > nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightFront] > nMotorEncoder[LeftFront]){
 	pwr += 1;
 }
 return pwr;
@@ -65,10 +65,10 @@ return pwr;
 
 //Right Power Backwards
 int rpwrb(int pwr){
-if(nMotorEncoder[LeftRear] < nMotorEncoder[RightRear]){
+if(nMotorEncoder[LeftFront] < nMotorEncoder[RightFront]){
 	pwr += 1;
 	return pwr;
-}else if(nMotorEncoder[RightRear] < nMotorEncoder[LeftRear]){
+}else if(nMotorEncoder[RightFront] < nMotorEncoder[LeftFront]){
 	pwr -= 1;
 }
 return pwr;
@@ -85,7 +85,7 @@ void sforward(int pwr,int rotations){
 	bMotorReflected[LeftFront] = true;
 	bMotorReflected[RightRear] = false;
 	bMotorReflected[LeftRear] = true;
-	while(nMotorEncoder[RightRear] <= rotations && nMotorEncoder[LeftRear] <= rotations){
+	while(nMotorEncoder[RightFront] <= rotations && nMotorEncoder[LeftFront] <= rotations){
 		leftp = lpwr(leftp);
 		rightp = rpwr(rightp);
 		motor[LeftFront] = leftp;
@@ -110,7 +110,7 @@ void sbackward(int pwr,int rotations){
 	bMotorReflected[LeftFront] = false;
 	bMotorReflected[RightRear] = true;
 	bMotorReflected[LeftRear] = false;
-		while(nMotorEncoder[RightRear] <= rotations && nMotorEncoder[LeftRear] <= rotations){
+		while(nMotorEncoder[RightFront] <= rotations && nMotorEncoder[LeftFront] <= rotations){
 		leftp = lpwrb(leftp);
 		rightp = rpwrb(rightp);
 		//globalA = nMotorEncoder[RightFront];
