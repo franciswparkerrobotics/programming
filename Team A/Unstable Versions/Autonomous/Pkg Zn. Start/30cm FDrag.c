@@ -38,7 +38,6 @@ StartTask(showEncoders);
 			//Initialize servos
 		 	servo[LeftGoal] = 140;
      	servo[RightGoal] = 90;
-     	servo[Dumper60]= 100;
      	servo[Dumper30]= 230;
       moveleft(50,4000);
      	//1. Drives off Floor
@@ -63,10 +62,11 @@ StartTask(showEncoders);
 			servo[LeftGoal] = 230;
       servo[RightGoal] = 0;
       servo[Dumper30]=0;
-			wait1Msec(500);
-			turnright(50,1000);
+			wait1Msec(2000);
+			turnright(50,100);
 			sforward(100,10000);
 			turnleft(50,4000);
+			backward(100,4000);
 			//smoveright(50,1000);
 			//wait1Msec(500);
 			//sbackward(30,1000);s
