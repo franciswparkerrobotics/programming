@@ -67,14 +67,12 @@ void initializeRobot()
 
 
 task manipulator(){
-
  while(true)
   {
     //getJoystickSettings(joystick);  // Update Buttons and Joysticks
 
-    if(joy2Btn(1) == 1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
+    if(joy2Btn(1)==1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
     else{servo[LeftGoal] = 140;servo[RightGoal] = 90;}
-
     if(joy2Btn(2) == 1){servo[Dumper60] = 0;}
     else{servo[Dumper60]=100;}
 
