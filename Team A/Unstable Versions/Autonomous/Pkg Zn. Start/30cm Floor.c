@@ -16,8 +16,13 @@
 
 #include "SyncedAutonomousDirections.h"
 #include "AutonomousDirections.h"
+//#include "James.c"
 int RR, LR, RF, LF = 0;
 task showEncoders{
+	nMotorEncoder[RightRear]=0;
+	nMotorEncoder[LeftRear]=0;
+  nMotorEncoder[RightFront]=0;
+	nMotorEncoder[LeftFront]=0;
 	while(1){
 	RR = nMotorEncoder[RightRear];
 	LR = nMotorEncoder[LeftRear];
@@ -25,6 +30,7 @@ task showEncoders{
 	LF = nMotorEncoder[LeftFront];
 }
 }
+//task main(){StartTask(showEncoders);Motor[RightRear]=100;Motor[LeftRear]=100;while(1){wait10Msec(100);}}
 task main()
 {
 //power,rotations
@@ -37,9 +43,9 @@ StartTask(showEncoders);
 			//Initialize servos
 		 	servo[LeftGoal] = 140;
      	servo[RightGoal] = 90;
-     	servo[Dumper60]= 100;
      	servo[Dumper30]= 230;
-      moveleft(50,4000);
+     	servo[Dumper60]=250;
+      moveleft(50,6000);
      	//1. Drives off Floor
      	sbackward(100,10000);
 
@@ -47,7 +53,7 @@ StartTask(showEncoders);
 		allstop();
 			wait1Msec(300);
 
-			turnleft(100,100);
+			turnleft(100,50);
 			backward(50,500);
 			for (int i = 0; i <5; i++){
 				turnleft(50,30);
@@ -62,24 +68,7 @@ StartTask(showEncoders);
 			servo[LeftGoal] = 230;
       servo[RightGoal] = 0;
       servo[Dumper30]=0;
-			wait1Msec(500);
-			//sforward(50,500);
-			//smoveright(50,1000);
-			//wait1Msec(500);
-			//sbackward(30,1000);
-
-			//wait1Msec(300);
-			//sturnleft(30,3000);
-
-			//wait1Msec(300);
-			//sbackward(30,12000);
-
-
-
-
-//forward(50,100000)
-
-//sforward(50,8000);
-//forward(50,8000);
-StopTask(showEncoders);
-}
+			wait1Msec(2000);
+			servo[Dumper30]= 230;
+			wait1msec(2000);
+		}
