@@ -1,8 +1,8 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
 #pragma config(Sensor, S1,     ,               sensorI2CMuxController)
-#pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     LeftRear,      tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop, reversed)
+#pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_1,     hwShooter,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     Feeder,        tmotorTetrix, openLoop)
@@ -93,8 +93,8 @@ task driver(){
 		// Resets movement values
 
 		// Get joystick values
-		x1 = joystick.joy1_x1*.5;y1 = -joystick.joy1_y1*.5;
-		x2 = joystick.joy1_x2*.5;y2 = joystick.joy1_y2*.5;
+		x1 = joystick.joy1_x1*.7;y1 = -joystick.joy1_y1*.7;
+		x2 = joystick.joy1_x2*.7;y2 = joystick.joy1_y2*.7;
 
 		//LF = x1; RF = x1; LB = -x1; RB = -x1;
 		 LF = y1;
