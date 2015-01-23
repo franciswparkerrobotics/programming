@@ -16,11 +16,7 @@
 
 #include "AutonomousDirections.h"
 
-task main()
-{
-//power,rotations
-//2500 is around 1 rotation
-//2500 rotations turn is 90 degrees
+void initialize(){
 servo[door] = 0;
 nMotorEncoder[elevator_motor] = 0;
 nMotorEncoder[RightFront] = 0;
@@ -29,6 +25,12 @@ nMotorEncoder[LeftRear] = 0;
 nMotorEncoder[RightRear] = 0;
 servo[grabber1_servo] = 123;
 servo[grabber2_servo] = 123;
+}
+task main()
+{
+//power,rotations
+//2500 is around 1 rotation
+//2500 rotations turn is 90 degrees
 backward(15,9400);
 allstop();
 wait10Msec(50);
@@ -42,25 +44,11 @@ allstop();
 wait10Msec(100);
 servo[door] = 123;
 wait10Msec(100);
-/*
 nMotorEncoder[elevator_motor] = 0;
 while(nMotorEncoder[elevator_motor] < 300){
 motor[elevator_motor] = 100;
 }
-*/
-/*
-allstop();
-moveright(100,3000);
-allstop();
-turnleft(100,7500);
-allstop();
-moveleft(100,5000);
-allstop();
-backward(100,3500);
-allstop();
-moveright(100,6000);
-allstop();
-*/
+
 }
 
 task main2()
