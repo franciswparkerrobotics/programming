@@ -33,7 +33,7 @@ task main()
 //backward(10,10000);
 
 StartTask(showEncoders);
-			waitForStart();
+//			waitForStart();
 			//Initialize servos
 		 	servo[LeftGoal] = 140;
      	servo[RightGoal] = 90;

@@ -1,11 +1,13 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
-#pragma config(Sensor, S1,     ,               sensorI2CMuxController)
+#pragma config(Hubs,  S2, HTMotor,  none,     none,     none)
 #pragma config(Motor,  mtr_S1_C1_1,     RightRear,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C1_2,     LeftRear,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_1,     RightFront,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C2_2,     LeftFront,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_1,     hwShooter,     tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     Feeder,        tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S2_C1_1,     Elevator,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S2_C1_2,     motorK,        tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C3_1,    LeftGoal,             tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_2,    RightGoal,            tServoStandard)
 #pragma config(Servo,  srvo_S1_C3_3,    Dumper60,             tServoStandard)
@@ -72,14 +74,16 @@ task manipulator(){
     //getJoystickSettings(joystick);  // Update Buttons and Joysticks
 
     if(joy2Btn(1)==1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
-    else{servo[LeftGoal] = 140;servo[RightGoal] = 90;}
+    if(joy2Btn(3){servo[LeftGoal] = 140;servo[RightGoal] = 90;}
     if(joy2Btn(2) == 1){servo[Dumper60] = 0;}
     else{servo[Dumper60]=100;}
-
-
+jj
     motor[hwShooter] = joystick.joy2_y1*100/128;
    	if(motor[hwShooter]>15){motor[Feeder]=-50;}
    	else{motor[Feeder]=0;}
+
+    motor[Elevator] = joystick.joy2_y2*100/128;
+
   }
 
 
