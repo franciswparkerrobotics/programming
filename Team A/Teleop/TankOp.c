@@ -74,10 +74,10 @@ task manipulator(){
     //getJoystickSettings(joystick);  // Update Buttons and Joysticks
 
     if(joy2Btn(1)==1){servo[LeftGoal] = 230; servo[RightGoal] = 0;}
-    if(joy2Btn(3){servo[LeftGoal] = 140;servo[RightGoal] = 90;}
+    if(joy2Btn(3)==1){servo[LeftGoal] = 140;servo[RightGoal] = 90;}
     if(joy2Btn(2) == 1){servo[Dumper60] = 0;}
     else{servo[Dumper60]=100;}
-jj
+
     motor[hwShooter] = joystick.joy2_y1*100/128;
    	if(motor[hwShooter]>15){motor[Feeder]=-50;}
    	else{motor[Feeder]=0;}

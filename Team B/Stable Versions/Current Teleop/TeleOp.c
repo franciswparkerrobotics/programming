@@ -43,8 +43,7 @@ void initializeRobot()
 {
   // Place code here to sinitialize servos to starting positions.
   // Sensors are automatically configured and setup by ROBOTC. They may need a brief time to stabilize.
-	servo[grabber1_servo] = 0;
-	servo[grabber2_servo] = 0;
+
   return;
 }
 
@@ -105,10 +104,10 @@ task elevator()
 	while(true)
 		{
 		if(joystick.joy2_y2 > 15){
-				motor[elevator_motor] = 100;
+				motor[elevator_motor] = -100;
 			}
 		else if(joystick.joy2_y2 < -15){
-				motor[elevator_motor] = -100;
+				motor[elevator_motor] = 100;
 			}
 		else{
 			motor[elevator_motor] = 0;
@@ -119,34 +118,32 @@ task elevator()
 //Use Joystick 1 buttons to grab the rolling goal.
 task grab()
 {
+	bool counter = true;
 	while(true){
-		if(joy1Btn(5) == 1){
-			servo[grabber1_servo] = 255;
-			servo[grabber2_servo] = 255;
-			wait10Msec(1000);
-		}
-		if(joy1Btn(6) == 1){
-			servo[grabber1_servo] = 0;
+		if(joy2Btn(6) == 1){
+		counter = true;
+		}else if(joy2Btn(5) == 1){
+		counter = false;
+	  }
+	  if(counter == true){
+	  servo[grabber1_servo] = 0;
+		servo[grabber2_servo] = 255;
+	  }else{
+	  servo[grabber1_servo] = 255;
 			servo[grabber2_servo] = 0;
-			wait10Msec(1000);
-		}
+	  }
 	}
 }
 
 //Use a two buttons to turn on/off the intake.  Intake will continuously run.
 task intake()
 {
-	bool intake = false;
 	while(true){
 		if(joy2Btn(7) == 1){
-			intake = true;
-		}
-		if(joy2Btn(8) == 1){
-			 intake = false;
-			}
-		if(intake == true){
-				motor[intake_motor] = 70;
-		}
+			motor[intake_motor] = -70;
+		}else if(joy2Btn(8) == 1){
+			 motor[intake_motor] = 70;
+	  }
 		else
 			{
 				motor[intake_motor] = 0;
