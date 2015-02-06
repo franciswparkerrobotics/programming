@@ -1,7 +1,7 @@
 #pragma config(Hubs,  S1, HTMotor,  HTMotor,  HTServo,  HTMotor)
 #pragma config(Hubs,  S2, HTMotor,  none,     none,     none)
-#pragma config(Motor,  mtr_S1_C2_1,     RightRear,     tmotorTetrix, openLoop)
-#pragma config(Motor,  mtr_S1_C2_2,     LeftRear,      tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_2,     RightRear,     tmotorTetrix, openLoop)
+#pragma config(Motor,  mtr_S1_C2_1,     LeftRear,      tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_1,     RightFront,    tmotorTetrix, openLoop)
 #pragma config(Motor,  mtr_S1_C4_2,     LeftFront,     tmotorTetrix, openLoop)
 #pragma config(Servo,  srvo_S1_C1_1,    LeftGoal,             tServoStandard)
@@ -88,11 +88,11 @@ task grab()
 		counter = false;
 	  }
 	  if(counter == true){
-	  servo[grabber1_servo] = 0;
-		servo[grabber2_servo] = 255;
+	  servo[RightGoal] = 0;
+		servo[LeftGoal] = 255;
 	  }else{
-	  servo[grabber1_servo] = 255;
-			servo[grabber2_servo] = 0;
+	  servo[RightGoal] = 255;
+			servo[LeftGoal] = 0;
 	  }
 	}
 }

@@ -59,5 +59,4 @@ allstop();
 backward(50,2500);
 wait10Msec(50);
 allstop();
-Ryswag
 }
