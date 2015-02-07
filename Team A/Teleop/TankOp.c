@@ -107,7 +107,10 @@ task driver(){
 		 RB = y2;
 
 		if (abs(joystick.joy1_x1)<minJoy&&abs(joystick.joy1_y1)<minJoy&&abs(joystick.joy1_x2)<minJoy){
-			LF = 0;RF = 0;LB = 0;RB = 0;
+			LF = 0;
+			RF = 0;
+			LB = 0;
+			RB = 0;
 		}
 
 		// Apply Finished values to motors.
